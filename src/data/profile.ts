@@ -3,6 +3,8 @@ export const profile = {
   initials: 'SCR',
   headline: 'Building Reliable Cloud Solutions.',
   subtitle: 'AWS Certified Solutions Architect – Associate | Aspiring Cloud Engineer',
+  heroIntro:
+    'I am a Computer Science and Engineering student specialising in Cloud Computing, passionate about AWS, cloud architecture, serverless systems, infrastructure and building practical cloud-based solutions.',
   summary:
     'Exploring cloud architecture, serverless technologies and scalable infrastructure through practical AWS and Azure projects.',
   location: 'Bengaluru, Karnataka, India',
@@ -15,6 +17,13 @@ export const profile = {
   avatarUrl: 'https://github.com/sricharanreddy5414.png?size=480',
   siteUrl: 'https://sricharanreddy5414.github.io/',
 } as const
+
+export const heroRoles = [
+  'AWS Certified Solutions Architect – Associate',
+  'Cloud Computing Enthusiast',
+  'Aspiring Cloud Architect',
+  'AWS & Serverless Developer',
+] as const
 
 export const aboutParagraphs = [
   'I am a Computer Science and Engineering student at Alliance University, Bengaluru, specialising in Cloud Computing. I hold the AWS Certified Solutions Architect – Associate credential and I am aiming toward Cloud Support Associate, AWS Cloud Engineer, and Cloud Infrastructure Engineer roles, with a longer-term goal of becoming a Solutions Architect.',
@@ -76,8 +85,8 @@ export const skillGroups: readonly SkillGroup[] = [
   },
   {
     title: 'Microsoft Azure',
-    note: 'Services used for the smart traffic monitoring and analytics dashboard.',
-    items: ['Azure Functions', 'Azure Cosmos DB', 'Azure Storage', 'Static Website Hosting'],
+    note: 'Services used for the smart traffic monitoring and analytics dashboard, including Azure Storage static website hosting.',
+    items: ['Azure Functions', 'Azure Cosmos DB', 'Azure Storage'],
   },
   {
     title: 'Programming',
@@ -85,40 +94,23 @@ export const skillGroups: readonly SkillGroup[] = [
     items: ['Python', 'Java', 'C', 'C++'],
   },
   {
-    title: 'DevOps fundamentals',
+    title: 'Cloud and systems',
     wide: true,
-    note: 'GitHub Actions deploys the Azure dashboard. Docker and Docker Compose are part of my toolchain. The remaining practices come from building and troubleshooting the cloud prototypes.',
+    note: 'Linux, networking, and SQL come from coursework and certification study. REST APIs are part of the ERAP prototype. Docker and Docker Compose are part of my toolchain. CI/CD fundamentals come from the GitHub Actions deployment on the Azure dashboard.',
     items: [
+      'Linux',
+      'Networking fundamentals',
+      'TCP/IP',
+      'DNS',
+      'HTTP/HTTPS',
+      'REST APIs',
+      'SQL',
+      'Git',
+      'GitHub',
       'Docker',
       'Docker Compose',
-      'GitHub Actions',
-      'Cloud Computing',
-      'Serverless Architecture',
-      'Cloud Deployment',
-      'Cloud Monitoring',
-      'Cloud Troubleshooting',
-      'IAM and Access Control',
+      'CI/CD fundamentals',
     ],
-  },
-  {
-    title: 'Networking',
-    note: 'Networking concepts from coursework, cloud study, and related certifications.',
-    items: ['Networking', 'TCP/IP', 'DNS', 'HTTP/HTTPS'],
-  },
-  {
-    title: 'Linux',
-    note: 'Part of my cloud computing foundation.',
-    items: ['Linux'],
-  },
-  {
-    title: 'Databases',
-    note: 'DynamoDB and Azure Cosmos DB store data in the cloud prototypes. SQL is part of my database foundation.',
-    items: ['DynamoDB', 'Azure Cosmos DB', 'SQL'],
-  },
-  {
-    title: 'Developer tools',
-    note: 'Tools I use for source control, editing, and API checks.',
-    items: ['Git', 'GitHub', 'VS Code', 'Postman'],
   },
 ]
 
@@ -138,6 +130,7 @@ export type Project = {
   technologies: readonly string[]
   github: string
   live?: ProjectLink
+  unavailable?: ProjectLink
   disclosures: readonly string[]
   troubleshooting?: {
     title: string
@@ -227,9 +220,9 @@ export const projects: readonly Project[] = [
       'GitHub Actions',
     ],
     github: 'https://github.com/sricharanreddy5414/smart-traffic-monitoring-analytics-dashboard',
-    live: {
+    unavailable: {
       href: 'https://stsmarttrafficweb5414.z29.web.core.windows.net/',
-      label: 'View live dashboard',
+      label: 'Dashboard currently unavailable',
     },
     disclosures: [
       'The traffic readings are simulated. This project does not integrate with government or real-time city traffic systems.',
@@ -372,9 +365,9 @@ export const hackathons = [
 export const navLinks = [
   { href: '#home', id: 'home', label: 'Home' },
   { href: '#about', id: 'about', label: 'About' },
-  { href: '#skills', id: 'skills', label: 'Skills' },
+  { href: '#expertise', id: 'expertise', label: 'Expertise' },
   { href: '#projects', id: 'projects', label: 'Projects' },
   { href: '#certifications', id: 'certifications', label: 'Certifications' },
-  { href: '#education', id: 'education', label: 'Education' },
+  { href: '#achievements', id: 'achievements', label: 'Achievements' },
   { href: '#contact', id: 'contact', label: 'Contact' },
 ] as const

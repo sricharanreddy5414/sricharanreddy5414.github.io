@@ -36,7 +36,7 @@ export function Navbar() {
   }, [])
 
   useEffect(() => {
-    const media = window.matchMedia('(min-width: 1024px)')
+    const media = window.matchMedia('(min-width: 1280px)')
     const onChange = () => {
       if (media.matches) setOpen(false)
     }
@@ -60,7 +60,7 @@ export function Navbar() {
   return (
     <>
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300 ${
         scrolled || open ? 'border-white/10 bg-ink/95 backdrop-blur-xl' : 'border-transparent bg-ink/70 backdrop-blur-md'
       }`}
     >
@@ -71,14 +71,14 @@ export function Navbar() {
           <span className="font-serif text-xl tracking-[0.18em]">{profile.initials}</span>
         </a>
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-5">
+        <nav aria-label="Primary" className="hidden xl:block">
+          <ul className="flex items-center gap-4">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
                   data-active={active === link.id ? 'true' : 'false'}
-                  className={`link-underline text-sm ${active === link.id ? 'text-paper' : 'text-mist hover:text-paper'}`}
+                  className={`link-underline text-[0.68rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 ${active === link.id ? 'text-paper' : 'text-mist hover:text-paper'}`}
                   onClick={() => setActive(link.id)}
                 >
                   {link.label}
@@ -90,7 +90,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 text-paper lg:hidden"
+          className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 text-paper xl:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((value) => !value)}
@@ -104,14 +104,14 @@ export function Navbar() {
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="fixed inset-x-0 top-[4.125rem] bottom-0 z-40 overflow-y-auto border-t border-white/10 bg-ink lg:hidden"
+          className="fixed inset-x-0 top-[4.125rem] bottom-0 z-40 overflow-y-auto border-t border-white/10 bg-ink xl:hidden"
         >
           <ul className="mx-auto flex w-full max-w-6xl flex-col px-5 py-4 md:px-8">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
-                  className="flex min-h-12 items-center text-base text-paper"
+                  className="flex min-h-12 items-center text-sm font-medium uppercase tracking-[0.16em] text-paper"
                   onClick={() => {
                     setActive(link.id)
                     setOpen(false)

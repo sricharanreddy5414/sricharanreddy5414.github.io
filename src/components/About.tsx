@@ -1,4 +1,5 @@
 import { aboutParagraphs, focusAreas } from '../data/profile'
+import { Education } from './Education'
 import { Container, Reveal, SectionHeading } from './ui'
 
 export function About() {
@@ -28,6 +29,7 @@ export function About() {
             </ul>
           </div>
         </Reveal>
+        <Education />
       </Container>
     </section>
   )

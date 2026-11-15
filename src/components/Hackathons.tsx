@@ -4,13 +4,14 @@ import { Container, ExternalLink, Reveal, SectionHeading, secondaryActionClass }
 
 export function Hackathons() {
   return (
-    <section id="hackathons" aria-labelledby="hackathons-heading" className="border-t border-white/10 py-24 md:py-32">
+    <section id="achievements" aria-labelledby="hackathons-heading" className="border-t border-white/10 py-24 md:py-32">
       <Container>
         <Reveal>
+          <span id="hackathons" className="sr-only">Achievements</span>
           <SectionHeading
             id="hackathons-heading"
-            index="06  Hackathons"
-            title="Hackathons"
+            index="05  Achievements"
+            title="Achievements"
             lede="Participation and a team project, limited to the work I actually did."
           />
           <div className="mt-12 grid gap-4 lg:grid-cols-2">

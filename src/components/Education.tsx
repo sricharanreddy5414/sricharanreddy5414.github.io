@@ -1,17 +1,19 @@
 import { education } from '../data/profile'
-import { Container, Reveal, SectionHeading } from './ui'
+import { Reveal } from './ui'
 
 export function Education() {
   return (
-    <section id="education" aria-labelledby="education-heading" className="border-t border-white/10 py-24 md:py-32">
-      <Container>
+    <div id="education" aria-labelledby="education-heading" className="mt-20 border-t border-white/10 pt-16">
         <Reveal>
-          <SectionHeading
-            id="education-heading"
-            index="05  Education"
-            title="Education"
-            lede="Alliance University for the B.Tech in cloud computing, with Class XII and Class X results from Andhra Pradesh."
-          />
+          <header className="max-w-2xl">
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-crimson">Education</p>
+            <h3 id="education-heading" className="mt-3 font-serif text-4xl leading-tight text-paper">
+              Education
+            </h3>
+            <p className="mt-5 text-base leading-7 text-mist">
+              Bachelor of Technology in Computer Science and Engineering — Cloud Computing, 2024–2028, with a current CGPA of 8.8/10. Class XII and Class X results are included below.
+            </p>
+          </header>
           <ol className="relative mt-12 border-l border-white/10">
             {education.map((item) => (
               <li key={item.school} className="relative pb-12 pl-8 last:pb-0">
@@ -39,7 +41,6 @@ export function Education() {
             ))}
           </ol>
         </Reveal>
-      </Container>
-    </section>
+    </div>
   )
 }

@@ -1,11 +1,29 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import type { PointerEvent, ReactNode } from 'react'
 
-export function Container({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={`mx-auto w-full max-w-6xl px-5 md:px-8 ${className}`}>{children}</div>
+export function Container({
+  children,
+  className = '',
+  wide = false,
+}: {
+  children: ReactNode
+  className?: string
+  wide?: boolean
+}) {
+  return (
+    <div className={`mx-auto w-full px-5 md:px-8 ${wide ? 'max-w-[90rem]' : 'max-w-6xl'} ${className}`}>{children}</div>
+  )
 }
 
-export function Reveal({ children, className = '' }: { children: ReactNode; className?: string }) {
+export function Reveal({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: ReactNode
+  className?: string
+  delay?: number
+}) {
   const reduce = useReducedMotion()
   if (reduce) {
     return <div className={className}>{children}</div>
@@ -17,7 +35,7 @@ export function Reveal({ children, className = '' }: { children: ReactNode; clas
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '0px 0px -8% 0px' }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>
@@ -67,4 +85,28 @@ export const primaryActionClass =
   'inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-wine px-5 text-sm font-medium text-white transition-colors hover:bg-[#861628]'
 
 export const secondaryActionClass =
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 text-sm font-medium text-paper transition-colors hover:border-white/30'
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 text-sm font-medium text-paper transition-colors duration-300 hover:border-white/30'
+
+export function TiltSurface({ children, className = '' }: { children: ReactNode; className?: string }) {
+  const reduce = useReducedMotion()
+
+  function onPointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (reduce || event.pointerType === 'touch') return
+    const rect = event.currentTarget.getBoundingClientRect()
+    const px = (event.clientX - rect.left) / rect.width - 0.5
+    const py = (event.clientY - rect.top) / rect.height - 0.5
+    event.currentTarget.style.setProperty('--tilt-x', `${(-py * 3.5).toFixed(2)}deg`)
+    event.currentTarget.style.setProperty('--tilt-y', `${(px * 4.5).toFixed(2)}deg`)
+  }
+
+  function onPointerLeave(event: PointerEvent<HTMLDivElement>) {
+    event.currentTarget.style.setProperty('--tilt-x', '0deg')
+    event.currentTarget.style.setProperty('--tilt-y', '0deg')
+  }
+
+  return (
+    <div className={`tilt-scene ${className}`} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+      <div className="tilt-inner">{children}</div>
+    </div>
+  )
+}

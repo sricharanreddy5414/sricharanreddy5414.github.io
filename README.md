@@ -34,7 +34,7 @@ On every push to `main`, the workflow:
 1. Installs dependencies with `npm ci`.
 2. Runs lint.
 3. Builds the production site.
-4. Confirms `dist/index.html`, `dist/404.html`, the favicon, the social image, and the headline script are present.
+4. Confirms `dist/index.html`, `dist/404.html`, the favicon, the social image, and the name in the script bundle are present.
 5. Deploys `dist/` with the official GitHub Pages actions.
 
 Workflow permissions are limited to reading repository contents, writing Pages, and requesting the Pages identity token.
@@ -52,13 +52,23 @@ public           Favicon, social image, 404 page, robots, and sitemap
 
 The profile photo is loaded from the GitHub avatar URL. If that image fails, the hero shows the initials SCR. No generated portrait is used.
 
+## Hero portrait
+
+The hero shows that GitHub photograph with CSS depth: a bezel, glass highlight, red rim light, a slow yaw, a float, desktop pointer tilt, and a lighter finger-drag tilt on touch screens. Scroll position adds a few degrees of turn while the face stays visible.
+
+This is a depth treatment of the photograph. It is not a rigged 3D human, and the page does not describe it as one. A real head turn into a side profile needs a rigged GLB whose face matches this photograph. Place that file at `public/models/character.glb`, then extend `src/components/PortraitFrame.tsx`, which already marks the stage with `data-character-model="/models/character.glb"`. Three.js is not installed, because there is no model asset yet. Do not substitute a stock character.
+
+## Motion
+
+Project cards tilt slightly under a mouse and reveal as they enter the viewport. Expertise groups use a soft red glow. The name lines enter in sequence, and the role line crossfades. A short opening screen plays once. These effects stop when the browser requests reduced motion.
+
 ## Content boundaries
 
 - ERAP is a personal prototype with fictional test data. It is not an emergency dispatch service.
-- The traffic dashboard uses simulated readings.
+- The traffic dashboard uses simulated readings. The previously supplied Azure URL currently returns 404, so the project card marks that dashboard as unavailable and keeps the repository link.
 - CampusRadar describes frontend collaboration on a four-member team.
 - Cyber Kushti is participation. The team qualifier score was 95.5%, and the team did not qualify for Round 2.
 - Certification identifiers, scores, and dates appear only where they were supplied.
-- The site does not include a contact form. Email, phone, LinkedIn, and GitHub are direct links.
+- The contact form opens the visitor's email app with a mailto link. The site does not store or send the message itself.
 
 No API keys or personal access tokens belong in this repository.

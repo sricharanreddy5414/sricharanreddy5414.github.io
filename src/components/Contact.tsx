@@ -1,5 +1,6 @@
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react'
-import type { ReactNode, SVGProps } from 'react'
+import { useState } from 'react'
+import type { FormEvent, ReactNode, SVGProps } from 'react'
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -62,18 +63,32 @@ function ContactRow({
 }
 
 export function Contact() {
+  const [notice, setNotice] = useState('')
+
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const data = new FormData(event.currentTarget)
+    const name = String(data.get('name') ?? '').trim()
+    const email = String(data.get('email') ?? '').trim()
+    const message = String(data.get('message') ?? '').trim()
+    const body = `Name: ${name}\nEmail: ${email}\n\n${message}`
+    window.location.href = `mailto:${profile.email}?subject=${encodeURIComponent(`Portfolio enquiry from ${name}`)}&body=${encodeURIComponent(body)}`
+    setNotice('Your email app should open with this message. It is not sent until you send it from there.')
+  }
+
   return (
     <section id="contact" aria-labelledby="contact-heading" className="border-t border-white/10 py-24 md:py-32">
       <Container>
         <Reveal>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
+            <div>
             <SectionHeading
               id="contact-heading"
-              index="07  Contact"
+              index="06  Contact"
               title="Contact"
               lede="I am based in Bengaluru and open to early-career conversations about cloud support, AWS engineering, and cloud infrastructure."
             />
-            <div>
+            <div className="mt-10">
               <address className="grid gap-3 not-italic">
                 <ContactRow
                   href={`mailto:${profile.email}`}
@@ -111,6 +126,51 @@ export function Contact() {
                 Email and the profile links above are the direct ways to reach me.
               </p>
             </div>
+            </div>
+            <form onSubmit={onSubmit} className="grid gap-4 rounded-3xl border border-white/10 bg-charcoal p-6 md:p-8">
+              <div>
+                <h3 className="font-serif text-3xl text-paper">Write to me</h3>
+                <p className="mt-3 text-sm leading-6 text-mist">
+                  This form opens your email app with the message filled in. Nothing is stored on this website, and nothing is sent until you send that email.
+                </p>
+              </div>
+              <label className="grid gap-2 text-sm text-paper">
+                Name
+                <input
+                  name="name"
+                  required
+                  autoComplete="name"
+                  className="min-h-11 rounded-xl border border-white/10 bg-ink px-3 text-paper outline-none focus-visible:border-crimson"
+                />
+              </label>
+              <label className="grid gap-2 text-sm text-paper">
+                Email
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  className="min-h-11 rounded-xl border border-white/10 bg-ink px-3 text-paper outline-none focus-visible:border-crimson"
+                />
+              </label>
+              <label className="grid gap-2 text-sm text-paper">
+                Message
+                <textarea
+                  name="message"
+                  required
+                  rows={5}
+                  className="rounded-xl border border-white/10 bg-ink px-3 py-3 text-paper outline-none focus-visible:border-crimson"
+                />
+              </label>
+              <button type="submit" className="min-h-12 rounded-full bg-wine px-5 text-sm font-medium text-white transition-colors hover:bg-[#861628]">
+                Compose email
+              </button>
+              {notice ? (
+                <p role="status" className="text-sm leading-6 text-paper">
+                  {notice}
+                </p>
+              ) : null}
+            </form>
           </div>
         </Reveal>
       </Container>

@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import { projects } from '../data/profile'
-import { Container, ExternalLink, Reveal, SectionHeading, secondaryActionClass } from './ui'
+import { Container, ExternalLink, Reveal, SectionHeading, TiltSurface, secondaryActionClass } from './ui'
 
 export function Projects() {
   return (
@@ -14,8 +14,16 @@ export function Projects() {
             lede="Two independent cloud prototypes and one hackathon team contribution, with the scope of my work stated on each card."
           />
           <div className="mt-12 space-y-6">
-            {projects.map((project) => (
-              <article key={project.id} id={project.id} className="rounded-3xl border border-white/10 bg-charcoal p-6 md:p-10">
+            {projects.map((project, index) => (
+              <Reveal key={project.id} delay={index * 0.08}>
+              <TiltSurface>
+              <article id={project.id} className="rounded-3xl border border-white/10 bg-charcoal p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)] md:p-10">
+                <div
+                  className="mb-6 flex h-28 items-end rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_18%_20%,rgba(224,106,120,0.38),transparent_46%),linear-gradient(145deg,#1c1c21,#09090b)] px-5 py-4"
+                  aria-hidden="true"
+                >
+                  <p className="font-serif text-4xl text-crimson">{project.number}</p>
+                </div>
                 <div className="flex flex-wrap items-center gap-3">
                   <p className="font-serif text-2xl text-crimson">{project.number}</p>
                   <p className="rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-[0.14em] text-mist">
@@ -87,8 +95,16 @@ export function Projects() {
                       <ArrowUpRight aria-hidden="true" className="size-4" />
                     </ExternalLink>
                   ) : null}
+                  {project.unavailable ? (
+                    <ExternalLink href={project.unavailable.href} className={secondaryActionClass}>
+                      {project.unavailable.label}
+                      <ArrowUpRight aria-hidden="true" className="size-4" />
+                    </ExternalLink>
+                  ) : null}
                 </div>
               </article>
+              </TiltSurface>
+              </Reveal>
             ))}
           </div>
         </Reveal>
