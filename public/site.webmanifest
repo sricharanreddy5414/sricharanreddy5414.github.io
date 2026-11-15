@@ -1,0 +1,18 @@
+{
+  "name": "Sirivella Sri Charan Reddy",
+  "short_name": "SCR",
+  "description": "Portfolio of Sirivella Sri Charan Reddy, AWS Certified Solutions Architect – Associate.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

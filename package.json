@@ -1,0 +1,40 @@
+{
+  "name": "sri-charan-personal-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Personal portfolio of Sirivella Sri Charan Reddy, AWS Certified Solutions Architect – Associate.",
+  "type": "module",
+  "homepage": "https://sricharanreddy5414.github.io/",
+  "scripts": {
+    "dev": "vite",
+    "check": "node scripts/verify-content.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run check && tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "framer-motion": "14.14.0",
+    "lucide-react": "1.73.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "4.3.5",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "eslint": "10.15.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.8",
+    "globals": "17.14.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2",
+    "vite": "8.3.8"
+  }
+}
