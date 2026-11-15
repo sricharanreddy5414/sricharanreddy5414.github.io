@@ -49,7 +49,7 @@ jobs:
           test -s dist/sitemap.xml
           grep -q "Sirivella Sri Charan Reddy" dist/index.html
           grep -q "og:image" dist/index.html
-          grep -q "SIRIVELLA" dist/assets/*.js
+          grep -q "Building Reliable" dist/assets/*.js
           grep -q "AWS Certified Solutions Architect" dist/assets/*.js
 
       - name: Upload Pages artifact

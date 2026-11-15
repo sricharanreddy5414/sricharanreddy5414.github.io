@@ -15,10 +15,9 @@ const corpus = files.map((file) => readFileSync(file, 'utf8')).join('\n')
 
 const required = [
   'Sirivella Sri Charan Reddy',
-  'HELLO, I\'M',
-  'SIRIVELLA',
-  'SRI CHARAN',
-  'View My Work',
+  'Bengaluru, Karnataka, India',
+  'Explore My Work',
+  'View GitHub',
   'Cloud Computing Enthusiast',
   'Aspiring Cloud Architect',
   'AWS & Serverless Developer',

@@ -52,11 +52,24 @@ public           Favicon, social image, 404 page, robots, and sitemap
 
 The profile photo is loaded from the GitHub avatar URL. If that image fails, the hero shows the initials SCR. No generated portrait is used.
 
-## Hero portrait
+## Character model
 
-The hero shows that GitHub photograph with CSS depth: a bezel, glass highlight, red rim light, a slow yaw, a float, desktop pointer tilt, and a lighter finger-drag tilt on touch screens. Scroll position adds a few degrees of turn while the face stays visible.
+The hero still shows the GitHub profile photograph. There is no rigged character in this repository. A single front photograph does not contain the side of the face, so the site does not invent a profile or substitute another person.
 
-This is a depth treatment of the photograph. It is not a rigged 3D human, and the page does not describe it as one. A real head turn into a side profile needs a rigged GLB whose face matches this photograph. Place that file at `public/models/character.glb`, then extend `src/components/PortraitFrame.tsx`, which already marks the stage with `data-character-model="/models/character.glb"`. Three.js is not installed, because there is no model asset yet. Do not substitute a stock character.
+When a rigged GLB is placed at `public/models/character.glb`, the hero loads it with Three.js and plays a skeletal turn: front, three-quarter, side profile, then back to the front. The path lives in `src/character/config.ts`. The photograph stays on screen until the model is ready. If the file is missing, WebGL is unavailable, the browser requests reduced motion or data saving, or the model has no head bone and no cinematic clip, the photograph remains.
+
+The model needs a skeleton with head and neck bones (Mixamo names such as `mixamorigHead` and `mixamorigNeck` work). An optional clip named `CinematicTurn` is played instead of the procedural turn. An `Idle` clip can supply body motion underneath the procedural turn. Textures should be compressed, and the file should stay small enough for a phone.
+
+No third-party character is included, so there is no model licence to attribute. Do not drop in a stock body and present it as this portrait.
+
+Creating that GLB still needs explicit approval before any photograph is sent to an external service, plus reference photos the front avatar cannot replace:
+
+- A neutral front photo, evenly lit, ears and hairline visible.
+- A true left profile and a true right profile.
+- A three-quarter photo from each side.
+- The same clothing, expression, and lighting in every frame.
+
+The current GitHub avatar can guide likeness. It cannot supply the unseen sides.
 
 ## Motion
 

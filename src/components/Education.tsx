@@ -1,9 +1,10 @@
 import { education } from '../data/profile'
-import { Reveal } from './ui'
+import { Container, Reveal } from './ui'
 
 export function Education() {
   return (
-    <div id="education" aria-labelledby="education-heading" className="mt-20 border-t border-white/10 pt-16">
+    <section id="education" aria-labelledby="education-heading" className="border-t border-white/10 py-24 md:py-32">
+      <Container>
         <Reveal>
           <header className="max-w-2xl">
             <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-crimson">Education</p>
@@ -41,6 +42,7 @@ export function Education() {
             ))}
           </ol>
         </Reveal>
-    </div>
+      </Container>
+    </section>
   )
 }

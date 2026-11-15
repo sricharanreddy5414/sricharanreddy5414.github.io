@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
 import { useReducedMotion } from 'framer-motion'
+import { characterModelUrl } from '../character/config'
 import { profile } from '../data/profile'
-
-export const characterModelPath = '/models/character.glb'
 
 function clearMotion(target: HTMLDivElement) {
   target.style.setProperty('--tilt-x', '0deg')
@@ -68,7 +67,7 @@ export function PortraitFrame() {
     <div
       ref={stageRef}
       className="portrait-stage relative mx-auto w-full max-w-[22rem] sm:max-w-md"
-      data-character-model={characterModelPath}
+      data-character-model={characterModelUrl}
       onPointerMove={onPointerMove}
       onPointerDown={onPointerDown}
       onPointerUp={reset}

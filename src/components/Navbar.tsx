@@ -65,10 +65,12 @@ export function Navbar() {
       }`}
     >
       <div className="h-0.5 bg-wine" />
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 md:px-8">
-        <a href="#home" className="inline-flex items-center text-paper" aria-label={`${profile.name}, home`}>
-          <span className="mr-2.5 inline-block size-2 bg-wine" aria-hidden="true" />
+      <div className="mx-auto flex h-16 w-full max-w-[90rem] items-center justify-between gap-4 px-5 md:px-8">
+        <a href="#home" className="inline-flex shrink-0 items-center text-paper" aria-label={`${profile.name}, home`}>
+          <span className="mr-2.5 inline-block size-2 bg-neon shadow-[0_0_10px_#ff2d3c]" aria-hidden="true" />
           <span className="font-serif text-xl tracking-[0.18em]">{profile.initials}</span>
+          <span className="mx-2 text-white/25" aria-hidden="true">|</span>
+          <span className="text-[0.68rem] font-semibold tracking-[0.2em] text-mist">PORTFOLIO</span>
         </a>
 
         <nav aria-label="Primary" className="hidden xl:block">
@@ -78,9 +80,11 @@ export function Navbar() {
                 <a
                   href={link.href}
                   data-active={active === link.id ? 'true' : 'false'}
-                  className={`link-underline text-[0.68rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 ${active === link.id ? 'text-paper' : 'text-mist hover:text-paper'}`}
+                  aria-current={active === link.id ? 'true' : undefined}
+                  className={`link-underline inline-flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.14em] transition-colors duration-300 ${active === link.id ? 'text-paper' : 'text-mist hover:text-paper'}`}
                   onClick={() => setActive(link.id)}
                 >
+                  {active === link.id ? <span className="size-1 rounded-full bg-neon" aria-hidden="true" /> : null}
                   {link.label}
                 </a>
               </li>
@@ -88,7 +92,15 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <button
+        <div className="flex items-center gap-3">
+          <a
+            href="#contact"
+            className="hidden items-center gap-2 rounded-full border border-neon/40 bg-neon/10 px-3 py-1.5 text-[0.62rem] font-semibold tracking-[0.14em] text-paper uppercase xl:inline-flex"
+          >
+            <span className="size-1.5 rounded-full bg-neon shadow-[0_0_8px_#ff2d3c]" aria-hidden="true" />
+            Available for opportunities
+          </a>
+          <button
           type="button"
           className="inline-flex size-11 items-center justify-center rounded-full border border-white/10 text-paper xl:hidden"
           aria-expanded={open}
@@ -98,6 +110,7 @@ export function Navbar() {
           {open ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
           <span className="sr-only">{open ? 'Close menu' : 'Open menu'}</span>
         </button>
+        </div>
       </div>
     </header>
       {open ? (
@@ -106,12 +119,13 @@ export function Navbar() {
           aria-label="Mobile"
           className="fixed inset-x-0 top-[4.125rem] bottom-0 z-40 overflow-y-auto border-t border-white/10 bg-ink xl:hidden"
         >
-          <ul className="mx-auto flex w-full max-w-6xl flex-col px-5 py-4 md:px-8">
+          <ul className="mx-auto flex w-full max-w-[90rem] flex-col px-5 py-4 md:px-8">
             {navLinks.map((link) => (
               <li key={link.id}>
                 <a
                   href={link.href}
                   className="flex min-h-12 items-center text-sm font-medium uppercase tracking-[0.16em] text-paper"
+                  aria-current={active === link.id ? 'true' : undefined}
                   onClick={() => {
                     setActive(link.id)
                     setOpen(false)
@@ -121,6 +135,12 @@ export function Navbar() {
                 </a>
               </li>
             ))}
+            <li className="mt-4">
+              <a href="#contact" className="inline-flex min-h-12 items-center gap-2 text-xs font-semibold tracking-[0.16em] text-neon uppercase" onClick={() => setOpen(false)}>
+                <span className="size-1.5 rounded-full bg-neon" aria-hidden="true" />
+                Available for opportunities
+              </a>
+            </li>
           </ul>
         </nav>
       ) : null}

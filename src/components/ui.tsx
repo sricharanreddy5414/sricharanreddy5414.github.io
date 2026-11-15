@@ -82,7 +82,7 @@ export function ExternalLink({
 }
 
 export const primaryActionClass =
-  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-wine px-5 text-sm font-medium text-white transition-colors hover:bg-[#861628]'
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-neon px-5 text-sm font-medium text-white transition-colors hover:bg-wine'
 
 export const secondaryActionClass =
   'inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 text-sm font-medium text-paper transition-colors duration-300 hover:border-white/30'

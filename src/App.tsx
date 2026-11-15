@@ -1,6 +1,7 @@
 import { About } from './components/About'
 import { Certifications } from './components/Certifications'
 import { Contact } from './components/Contact'
+import { Education } from './components/Education'
 import { Footer } from './components/Footer'
 import { Hackathons } from './components/Hackathons'
 import { Hero } from './components/Hero'
@@ -24,6 +25,7 @@ export default function App() {
         <Projects />
         <Certifications />
         <Hackathons />
+        <Education />
         <Contact />
       </main>
       <Footer />
